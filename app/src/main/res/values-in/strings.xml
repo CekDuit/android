@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CekDuit</string>
+    <string name="settings">Pengaturan</string>
+    <string name="transactions">Transaksi</string>
+    <string name="home">Beranda</string>
+</resources>
