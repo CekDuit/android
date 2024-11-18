@@ -1,12 +1,19 @@
 package com.cekduit.app.ui.home
 
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import com.cekduit.app.R
 import com.cekduit.app.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -33,7 +40,10 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
         return root
+
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

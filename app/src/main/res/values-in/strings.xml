@@ -4,4 +4,6 @@
     <string name="settings">Pengaturan</string>
     <string name="transactions">Transaksi</string>
     <string name="home">Beranda</string>
+    <string name="search">Cari</string>
+    <string name="search_transaction">Cari Transaksi</string>
 </resources>
