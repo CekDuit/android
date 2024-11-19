@@ -1,6 +1,7 @@
 package com.cekduit.app
 
 import android.os.Bundle
+import android.widget.FrameLayout
 import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.cekduit.app.databinding.ActivityMainBinding
+import com.cekduit.app.ui.components.AddTransactionBottomSheetDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,5 +69,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val addTransactionFab = binding.floatingActionButton
+        addTransactionFab.setOnClickListener {
+            val bottomSheet = AddTransactionBottomSheetDialogFragment()
+            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+        }
     }
 }

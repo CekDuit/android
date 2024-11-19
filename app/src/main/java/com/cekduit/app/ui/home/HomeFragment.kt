@@ -1,5 +1,6 @@
 package com.cekduit.app.ui.home
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.ContextMenu
@@ -24,6 +25,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.model.GradientColor
+import com.github.mikephil.charting.utils.Utils
 
 class HomeFragment : Fragment() {
 
@@ -33,6 +35,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,9 +47,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
         }
 
         val chart = binding.chart
@@ -67,13 +68,18 @@ class HomeFragment : Fragment() {
         // Buat LineDataSet dan atur properti styling
         val dataSet = LineDataSet(entries, "Sample Data").apply {
             mode = LineDataSet.Mode.CUBIC_BEZIER
-            color = Color.BLUE
+            color = requireContext().getColor(R.color.blue_primary, )
             lineWidth = 2f
-            setCircleColor(Color.RED)
-            circleRadius = 5f
-            gradientColors = listOf(
-                GradientColor(Color.BLUE, Color.GREEN),
-            )
+            setDrawCircles(false)
+            setDrawFilled(true)
+            setDrawFilled(true)
+            setDrawValues(false)
+            lineWidth = 2f
+            fillDrawable = if (Utils.getSDKInt() >= 18) {
+                resources.getDrawable(R.drawable.line_chart_gradient, null)
+            } else {
+                null
+            }
         }
 
         val XAxis = chart.xAxis
@@ -86,6 +92,7 @@ class HomeFragment : Fragment() {
         markerView.chartView = chart
 
         chart.apply {
+            minOffset = 0f
             data = LineData(dataSet)
             description.isEnabled = false
             legend.isEnabled = false
