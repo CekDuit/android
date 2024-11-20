@@ -5,7 +5,7 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="search_transaction">Search Transaction</string>
-    <string name="tooltip">Marker</string>
+    <string name="tooltip" translatable="false">Marker</string>
     <string name="line_chart">Line Chart</string>
     <string name="fab_content_desc">Add New Transaction</string>
     <string name="add_transaction_title">Add Transaction</string>

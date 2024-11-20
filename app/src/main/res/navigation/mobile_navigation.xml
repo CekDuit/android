@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_transactions" />
 
     <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.cekduit.app.ui.settings.SettingsFragment"
-        android:label="@string/settings"
-        tools:layout="@layout/fragment_settings" />
+        android:id="@+id/navigation_wallet"
+        android:name="com.cekduit.app.ui.wallet.WalletFragment"
+        android:label="@string/wallet"
+        tools:layout="@layout/fragment_wallet" />
 </navigation>

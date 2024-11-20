@@ -12,8 +12,8 @@
         android:title="@string/transactions" />
 
     <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/round_settings_24"
-        android:title="@string/settings" />
+        android:id="@+id/navigation_wallet"
+        android:icon="@drawable/rounded_wallet_24"
+        android:title="@string/wallet" />
 
 </menu>

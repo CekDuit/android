@@ -6,4 +6,15 @@
     <string name="home">Beranda</string>
     <string name="search">Cari</string>
     <string name="search_transaction">Cari Transaksi</string>
+    <string name="fab_content_desc">Tambah Transaksi Baru</string>
+    <string name="add_transaction_title">Tambah Transaksi</string>
+    <string name="transaction_name_label">Nama</string>
+    <string name="amount">Jumlah</string>
+    <string name="add_transaction">Tambah Transaksi</string>
+    <string name="date">Tanggal</string>
+    <string name="select_date">Pilih Tanggal</string>
+    <string name="wallet">Dompet</string>
+    <string name="select_a_wallet_for_transaction">Pilih Dompet Untuk Transaksi</string>
+    <string name="income">Pemasukan</string>
+    <string name="outcome">Pengeluaran</string>
 </resources>

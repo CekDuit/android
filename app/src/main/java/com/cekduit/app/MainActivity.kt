@@ -1,6 +1,9 @@
 package com.cekduit.app
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.FrameLayout
 import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -12,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.cekduit.app.databinding.ActivityMainBinding
 import com.cekduit.app.ui.components.AddTransactionBottomSheetDialogFragment
+import com.cekduit.app.ui.settings.SettingsActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         // Setup AppBarConfiguration
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_transactions, R.id.navigation_settings
+                R.id.navigation_home, R.id.navigation_transactions, R.id.navigation_wallet
             )
         )
 
@@ -42,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val menuItems = listOf(R.id.navigation_home, R.id.navigation_transactions, R.id.navigation_settings)
+        val menuItems = listOf(R.id.navigation_home, R.id.navigation_transactions, R.id.navigation_wallet)
 
         var currentFragmentIndex = 0
 
@@ -73,6 +77,24 @@ class MainActivity : AppCompatActivity() {
         addTransactionFab.setOnClickListener {
             val bottomSheet = AddTransactionBottomSheetDialogFragment()
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.action_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
