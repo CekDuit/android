@@ -18,4 +18,5 @@
     <string name="select_a_wallet_for_transaction">Select a wallet for transaction</string>
     <string name="income">Income</string>
     <string name="outcome">Outcome</string>
+    <string name="category">Category</string>
 </resources>

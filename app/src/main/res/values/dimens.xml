@@ -3,4 +3,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="input_field_height">56dp</dimen>
     <dimen name="input_field_gap">16dp</dimen>
+    <dimen name="corner_radius_field">10dp</dimen>
 </resources>

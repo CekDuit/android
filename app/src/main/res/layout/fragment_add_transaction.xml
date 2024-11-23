@@ -13,8 +13,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/CustomTextInputLayout"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:hint="@string/transaction_name_label"
@@ -30,8 +29,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/amount_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/CustomTextInputLayout"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/input_field_gap"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -50,8 +48,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/date_field_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/CustomTextInputLayout"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/input_field_gap"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -70,10 +67,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/menu"
-        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/select_category"
+        style="@style/CustomDropdownLayout"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/input_field_gap"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -82,19 +77,35 @@
         app:layout_constraintTop_toBottomOf="@id/date_field_layout">
 
         <AutoCompleteTextView
-            android:hint="@string/wallet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/category"
             android:inputType="none"
-            app:simpleItems="@array/simple_items"
-            />
+            app:simpleItems="@array/simple_items" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/menu"
+        style="@style/CustomDropdownLayout"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/input_field_gap"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/select_category">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/wallet"
+            android:inputType="none"
+            app:simpleItems="@array/simple_items" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/select_transaction_type"
-        app:singleSelection="true"
-        app:selectionRequired="true"
         android:layout_width="0dp"
         android:layout_height="@dimen/input_field_height"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
@@ -102,40 +113,43 @@
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/menu">
+        app:layout_constraintTop_toBottomOf="@id/menu"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
         <Button
-            style="?attr/materialButtonToggleGroupStyle"
             android:id="@+id/button1"
-            app:icon="@drawable/rounded_arrow_upward_alt_24"
-            app:iconGravity="textStart"
+            style="?attr/materialButtonToggleGroupStyle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/income"
-            />
+            app:icon="@drawable/rounded_arrow_upward_alt_24"
+            app:iconGravity="textStart" />
+
         <Button
-            style="?attr/materialButtonToggleGroupStyle"
             android:id="@+id/button2"
-            app:icon="@drawable/rounded_arrow_downward_alt_24"
-            app:iconGravity="textStart"
+            style="?attr/materialButtonToggleGroupStyle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/outcome"
-            />
+            app:icon="@drawable/rounded_arrow_downward_alt_24"
+            app:iconGravity="textStart" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="0dp"
-        android:paddingVertical="10dp"
         style="@style/Widget.Material3.Button"
-        android:text="@string/add_transaction"
-        app:icon="@drawable/rounded_add_24"
-        app:iconGravity="textStart"
+        android:layout_width="0dp"
         android:layout_height="@dimen/input_field_height"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:paddingVertical="10dp"
+        android:text="@string/add_transaction"
+        app:cornerRadius="@dimen/corner_radius_field"
+        app:icon="@drawable/rounded_add_24"
+        app:iconGravity="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/select_transaction_type" />

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_radius_field</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius_field</item>
+        <item name="boxCornerRadiusTopStart">@dimen/corner_radius_field</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_radius_field</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="CustomDropdownLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_radius_field</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius_field</item>
+        <item name="boxCornerRadiusTopStart">@dimen/corner_radius_field</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_radius_field</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.PopupMenu" parent="Widget.Material3.PopupMenu">
+        <item name="popupMenuBackground">@drawable/custom_popup_background</item>
+    </style>
+</resources>
