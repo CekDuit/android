@@ -51,7 +51,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.SECRET_GITHUB_TOKEN }}
-          file: ${{ steps.releaseApk.outputs.apkfile }}
+          files: ${{ steps.releaseApk.outputs.apkfile }}
           draft: false
           prerelease: false
           tag_name: ${{ env.VERSION }}
