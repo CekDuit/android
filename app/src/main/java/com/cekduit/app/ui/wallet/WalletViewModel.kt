@@ -1,13 +1,13 @@
-package com.cekduit.app.ui.settings
+package com.cekduit.app.ui.wallet
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SettingsViewModel : ViewModel() {
+class WalletViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Settings Fragment"
+        value = "This is Wallet Fragment"
     }
     val text: LiveData<String> = _text
 }

@@ -46,5 +46,12 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+        <item name="android:theme">@style/Base.Theme.CekDuit</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CekDuit" parent="">
+        <item name="popupMenuBackground">@drawable/custom_popup_background</item>
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 </resources>

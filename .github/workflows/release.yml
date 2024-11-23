@@ -1,10 +1,8 @@
-name: Production Builds
+name: Release APK
 on:
-    workflow_dispatch:
-      inputs:
-        name:
-          description: 'Release-Build'
-          default: 'Generate Production Builds'
+    push:
+      branches:
+        - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,6 +28,12 @@ jobs:
             echo $ENCODED_STRING > keystore-base64.txt
             base64 -d keystore-base64.txt > keystore.jks
 
+      - name: Get Version
+        id: get_version
+        run: |
+          VERSION_NAME=$(grep 'versionName' app/build.gradle | sed 's/[^0-9.]//g')
+          echo "VERSION=$VERSION_NAME" >> $GITHUB_ENV
+
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
 
@@ -43,8 +47,12 @@ jobs:
         id: releaseApk
         run: echo "apkfile=$(find app/build/outputs/apk/release/*.apk)" >> $GITHUB_OUTPUT
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
+      - name: Upload APK to GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: release-artifact
-          path: ${{ steps.releaseApk.outputs.apkfile }}
+          token: ${{ secrets.SECRET_GITHUB_TOKEN }}
+          file: ${{ steps.releaseApk.outputs.apkfile }}
+          draft: false
+          prerelease: false
+          tag_name: ${{ env.VERSION }}
+          name: Release ${{ env.VERSION }}

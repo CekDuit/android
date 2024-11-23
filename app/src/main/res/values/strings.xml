@@ -5,4 +5,18 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="search_transaction">Search Transaction</string>
+    <string name="tooltip" translatable="false">Marker</string>
+    <string name="line_chart">Line Chart</string>
+    <string name="fab_content_desc">Add New Transaction</string>
+    <string name="add_transaction_title">Add Transaction</string>
+    <string name="transaction_name_label">Name</string>
+    <string name="amount">Amount</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="date">Date</string>
+    <string name="select_date">Select Date</string>
+    <string name="wallet">Wallet</string>
+    <string name="select_a_wallet_for_transaction">Select a wallet for transaction</string>
+    <string name="income">Income</string>
+    <string name="outcome">Outcome</string>
+    <string name="category">Category</string>
 </resources>

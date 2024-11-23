@@ -1,4 +1,4 @@
-package com.cekduit.app.ui.settings
+package com.cekduit.app.ui.wallet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.cekduit.app.databinding.FragmentSettingsBinding
+import com.cekduit.app.databinding.FragmentWalletBinding
 
-class SettingsFragment : Fragment() {
+class WalletFragment : Fragment() {
 
-    private var _binding: FragmentSettingsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentWalletBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,14 +19,14 @@ class SettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val settingsViewModel =
-            ViewModelProvider(this).get(SettingsViewModel::class.java)
+        val walletViewModel =
+            ViewModelProvider(this).get(WalletViewModel::class.java)
 
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        _binding = FragmentWalletBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
-        settingsViewModel.text.observe(viewLifecycleOwner) {
+        walletViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
