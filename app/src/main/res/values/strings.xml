@@ -6,7 +6,7 @@
     <string name="search">Search</string>
     <string name="search_transaction">Search Transaction</string>
     <string name="tooltip" translatable="false">Marker</string>
-    <string name="line_chart">Line Chart</string>
+    <string name="line_chart" translatable="false">Line Chart</string>
     <string name="fab_content_desc">Add New Transaction</string>
     <string name="add_transaction_title">Add Transaction</string>
     <string name="transaction_name_label">Name</string>
@@ -19,4 +19,8 @@
     <string name="income">Income</string>
     <string name="outcome">Outcome</string>
     <string name="category">Category</string>
+    <string name="language">Language</string>
+    <string name="appearance">Appearance</string>
+    <string name="reminder">Reminder</string>
+    <string name="list_item_setting_icon">List item setting icon</string>
 </resources>

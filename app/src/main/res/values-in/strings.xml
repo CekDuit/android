@@ -17,4 +17,8 @@
     <string name="select_a_wallet_for_transaction">Pilih Dompet Untuk Transaksi</string>
     <string name="income">Pemasukan</string>
     <string name="outcome">Pengeluaran</string>
+    <string name="category">Kategori</string>
+    <string name="language">Bahasa</string>
+    <string name="appearance">Penampilan</string>
+    <string name="reminder">Pengingat</string>
 </resources>
