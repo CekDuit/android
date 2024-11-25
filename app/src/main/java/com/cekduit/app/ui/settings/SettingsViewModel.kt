@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(private val pref: SettingsPreference) : ViewModel() {
-    fun getThemeSettings(): LiveData<Boolean> {
+    fun getThemeSettings(): LiveData<Boolean?> {
         return pref.getThemeSetting().asLiveData()
     }
 

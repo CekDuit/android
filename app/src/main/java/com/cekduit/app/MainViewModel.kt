@@ -6,7 +6,7 @@ import androidx.lifecycle.asLiveData
 import com.cekduit.app.utils.SettingsPreference
 
 class MainViewModel(private val pref: SettingsPreference) : ViewModel() {
-    fun getThemeSettings(): LiveData<Boolean> {
+    fun getThemeSettings(): LiveData<Boolean?> {
         return pref.getThemeSetting().asLiveData()
     }
 }

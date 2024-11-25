@@ -83,7 +83,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listenOnThemeChanges() {
-        viewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+        viewModel.getThemeSettings().observe(this) { isDarkModeActive ->
+            if (isDarkModeActive == null) {
+                return@observe
+            }
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
