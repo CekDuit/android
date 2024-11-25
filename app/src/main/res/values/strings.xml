@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Cek Duit</string>
     <string name="settings">Settings</string>
@@ -22,5 +23,4 @@
     <string name="language">Language</string>
     <string name="appearance">Appearance</string>
     <string name="reminder">Reminder</string>
-    <string name="list_item_setting_icon">List item setting icon</string>
 </resources>

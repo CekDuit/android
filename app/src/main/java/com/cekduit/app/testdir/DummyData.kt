@@ -11,7 +11,7 @@ class TransactionDummy {
             Transaction(
                 amount = 10000.0,
                 description = "Makanan",
-                type = TransactionType.INCOME,
+                type = TransactionType.EXPENSE,
                 createdAt = System.currentTimeMillis(),
                 timestamp = System.currentTimeMillis(),
                 transactionId = "1"
@@ -27,7 +27,7 @@ class TransactionDummy {
             Transaction(
                 amount = 10000.0,
                 description = "Makanan",
-                type = TransactionType.INCOME,
+                type = TransactionType.EXPENSE,
                 createdAt = System.currentTimeMillis(),
                 timestamp = System.currentTimeMillis(),
                 transactionId = "1"

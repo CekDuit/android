@@ -2,6 +2,7 @@ package com.cekduit.app.ui.settings
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -46,7 +47,6 @@ class SettingsActivity : AppCompatActivity() {
                     val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags("en_US")
                     AppCompatDelegate.setApplicationLocales(appLocale)
                 }
-
                 R.id.idLocaleButton -> {
                     val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags("in")
                     AppCompatDelegate.setApplicationLocales(appLocale)
