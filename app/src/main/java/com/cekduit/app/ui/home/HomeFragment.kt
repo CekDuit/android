@@ -105,17 +105,15 @@ class HomeFragment : Fragment() {
             isHighlightPerDragEnabled = true
             isHighlightPerTapEnabled = true
             isDragEnabled = true
-            setScaleEnabled(false) // Disable scaling untuk interaksi yang lebih baik
+            setScaleEnabled(false)
             setPinchZoom(false)
             setDrawMarkers(true)
 
-            // Penting: set maximum highlight distance
             maxHighlightDistance = 300f
 
             // Enable touch gestures
             setTouchEnabled(true)
 
-            // Update chart setelah konfigurasi
             invalidate()
         }
 

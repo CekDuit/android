@@ -1,4 +1,5 @@
 <resources>
+    <color name="rose">#F43f5E</color>
     <color name="blue_primary">#3B82F6</color>
     <color name="md_theme_primary">#4B5C92</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>

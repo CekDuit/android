@@ -7,4 +7,9 @@
         <item>Item 4</item>
         <item>Item 5</item>
     </string-array>
+    <string-array name="setting_options">
+        <item>@string/language</item>
+        <item>@string/appearance</item>
+        <item>@string/reminder</item>
+    </string-array>
 </resources>

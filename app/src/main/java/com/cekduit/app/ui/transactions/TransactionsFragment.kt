@@ -12,8 +12,18 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cekduit.app.R
 import com.cekduit.app.databinding.FragmentTransactionsBinding
+import com.cekduit.app.testdir.DummyData
+import com.cekduit.app.testdir.Transaction
+import com.cekduit.app.testdir.TransactionDummy
+import com.cekduit.app.testdir.TransactionList
+import com.cekduit.app.testdir.TransactionType
+import com.cekduit.app.ui.adapter.TransactionItemAdapter
+import com.cekduit.app.ui.adapter.TransactionsListAdapter
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class TransactionsFragment : Fragment() {
 
@@ -34,11 +44,7 @@ class TransactionsFragment : Fragment() {
         _binding = FragmentTransactionsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        transactionsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-
+        // setup menu for this fragment
         requireActivity().addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 // Inflate menu Resource
@@ -55,6 +61,20 @@ class TransactionsFragment : Fragment() {
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        binding.rvTransactionsList.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            val dummyData = TransactionDummy().dummyData
+            val dataAdapter = TransactionsListAdapter()
+            adapter = dataAdapter
+            dataAdapter.setData(listOf(
+                dummyData,
+                dummyData,
+                dummyData,
+                dummyData,
+            ))
+
+        }
 
         return root
     }

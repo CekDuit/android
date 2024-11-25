@@ -1,178 +1,199 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.settings.SettingsActivity"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.settings.SettingsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
-        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/settings"
-            app:menu="@menu/toolbar_menu" />
+            app:menu="@menu/toolbar_menu"
+            app:title="@string/settings" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/activity_horizontal_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
-            <!-- Konten di dalam ScrollView -->
-            <TextView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/basicSettingsCard"
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" />
+                app:cardCornerRadius="16dp"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_horizontal_margin">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" />
+                    <TextView
+                        android:id="@+id/tvTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/appearance"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+                    <RadioGroup
+                        android:id="@+id/themeRadioGroup"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvTheme">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" /><TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                android:paddingBottom="8dp" />
+                        <RadioButton
+                            android:id="@+id/lightThemeButton"
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/theme_selector_light"
+                            android:button="@null"
+                            android:clipToOutline="true"
+                            android:gravity="fill" />
 
-        </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/darkThemeButton"
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/theme_selector_dark"
+                            android:button="@null"
+                            android:clipToOutline="true"
+                            android:gravity="fill" />
+                    </RadioGroup>
+
+                    <View
+                        android:id="@+id/dividerTheme"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_view_divider"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/themeRadioGroup" />
+
+                    <TextView
+                        android:id="@+id/tvLanguage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/language"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dividerTheme" />
+
+                    <RadioGroup
+                        android:id="@+id/localeRadioGroup"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvLanguage">
+
+                        <RadioButton
+                            android:id="@+id/idLocaleButton"
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/locale_selector_id"
+                            android:button="@null"
+                            android:clipToOutline="true"
+                            android:gravity="fill" />
+
+                        <RadioButton
+                            android:id="@+id/enLocaleButton"
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/locale_selector_en"
+                            android:button="@null"
+                            android:clipToOutline="true"
+                            android:gravity="fill" />
+                    </RadioGroup>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/advanceSettingsCard"
+                style="@style/Widget.Material3.CardView.Elevated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintTop_toBottomOf="@id/basicSettingsCard">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:id="@+id/tvReminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reminder"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvReminderDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Remind me to review today transactions"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvReminder" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/tvReminder"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
