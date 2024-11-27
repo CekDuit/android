@@ -1,4 +1,4 @@
-package com.cekduit.app
+package com.cekduit.app.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.cekduit.app.R
 import com.cekduit.app.databinding.ActivityMainBinding
 import com.cekduit.app.ui.createTransaction.AddTransactionBottomSheetDialogFragment
 import com.cekduit.app.ui.settings.SettingsActivity
@@ -49,7 +50,11 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val menuItems = listOf(R.id.navigation_home, R.id.navigation_transactions, R.id.navigation_wallet)
+        val menuItems = listOf(
+            R.id.navigation_home,
+            R.id.navigation_transactions,
+            R.id.navigation_wallet
+        )
 
         var currentFragmentIndex = 0
         navView.setOnItemSelectedListener { menuItem ->

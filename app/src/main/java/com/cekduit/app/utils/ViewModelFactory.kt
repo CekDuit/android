@@ -3,7 +3,7 @@ package com.cekduit.app.utils
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.cekduit.app.MainViewModel
+import com.cekduit.app.ui.main.MainViewModel
 import com.cekduit.app.di.Injection
 import com.cekduit.app.ui.settings.SettingsViewModel
 

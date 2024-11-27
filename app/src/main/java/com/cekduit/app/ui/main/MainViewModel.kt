@@ -1,4 +1,4 @@
-package com.cekduit.app
+package com.cekduit.app.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

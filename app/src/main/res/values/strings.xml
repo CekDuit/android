@@ -23,4 +23,12 @@
     <string name="language">Language</string>
     <string name="appearance">Appearance</string>
     <string name="reminder">Reminder</string>
+    <string name="title_welcome_page">Welcome to Cek Duit</string>
+    <string name="message_welcome_page">Lorem Ipsum Bla bla bla bla</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
 </resources>
