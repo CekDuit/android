@@ -21,4 +21,18 @@
     <string name="language">Bahasa</string>
     <string name="appearance">Penampilan</string>
     <string name="reminder">Pengingat</string>
+    <string name="title_login_page">Selamat Datang to Cek Duit</string>
+    <string name="title_welcome_page">Selamat Datang to Cek Duit</string>
+    <string name="message_welcome_page">Jelajahi perjalanan keuangan Anda dengan mudah. Pantau pengeluaran, atur anggaran, dan raih kontrol penuh atas keuangan Anda untuk masa depan yang lebih baik!</string>
+    <string name="message_login_page">Mulailah perjalanan Anda dengan masuk menggunakan email dan kata sandi. Pantau keuangan Anda dengan mudah dan raih kontrol penuh atas pengelolaan keuangan Anda!</string>
+    <string name="login">Masuk</string>
+    <string name="signup">Daftar</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="email_invalid">Alamat Email Tidak Valid</string>
+    <string name="pass_invalid">Minimal 8 karakter kata sandi</string>
+    <string name="title_signup_page">Mulai dengan Masuk Terlebih Dahulu dengan Mengisi Email dan Kata Sandi Anda</string>
+    <string name="name">Nama</string>
+    <string name="logout">Keluar</string>
 </resources>

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -14,10 +16,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cekduit.app.R
 import com.cekduit.app.databinding.ActivityMainBinding
 import com.cekduit.app.ui.createTransaction.AddTransactionBottomSheetDialogFragment
 import com.cekduit.app.ui.settings.SettingsActivity
+import com.cekduit.app.ui.welcome.WelcomeActivity
 import com.cekduit.app.utils.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
@@ -85,6 +89,23 @@ class MainActivity : AppCompatActivity() {
             val bottomSheet = AddTransactionBottomSheetDialogFragment()
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
+
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, WelcomeActivity::class.java))
+                finish()
+            }
+        }
+        setupView()
+    }
+
+    private fun setupView() {
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, WelcomeActivity::class.java))
+                finish()
+            }
+        }
     }
 
     private fun listenOnThemeChanges() {
@@ -108,13 +129,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.action_settings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
                 true
             }
+            R.id.action_logout -> {
+                viewModel.logout()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 }

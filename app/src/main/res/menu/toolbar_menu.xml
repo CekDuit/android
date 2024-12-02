@@ -7,4 +7,7 @@
         android:title="@string/settings"
         app:showAsAction="collapseActionView"
         android:contentDescription="@string/settings"/>
+    <item
+      android:id="@+id/action_logout"
+      android:title="@string/logout" />
 </menu>
