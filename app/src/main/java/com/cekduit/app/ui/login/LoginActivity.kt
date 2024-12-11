@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -21,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.Scope
 import com.google.android.gms.tasks.Task
 import kotlin.getValue
 
@@ -42,6 +44,8 @@ class LoginActivity : AppCompatActivity() {
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
+//            .requestIdToken("330583606871-rscvkr7gn8fbi27vd6l174l8rqqdik0j.apps.googleusercontent.com")
+            .requestScopes(Scope("https://www.googleapis.com/auth/gmail.readonly"))
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
@@ -64,11 +68,26 @@ class LoginActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
             try {
-                val account = GoogleSignIn.getSignedInAccountFromIntent(data).result
-                navigateToMainActivity(account.displayName)
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                handleSignInResult(task)
+//                val idToken = account?.idToken
+//                Log.e("idToken", idToken.toString())
+//                navigateToMainActivity(account.displayName)
             } catch (e: ApiException) {
                 Toast.makeText(this, "Google Sign-In failed", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            val idToken = account?.idToken
+
+            // Kirim idToken ke server Anda
+            Log.e("idToken", idToken.toString())
+        } catch (e: ApiException) {
+            Log.w("SignIn", "signInResult:failed code=" + e.statusCode)
         }
     }
 
