@@ -35,4 +35,6 @@
     <string name="title_signup_page">Mulai dengan Masuk Terlebih Dahulu dengan Mengisi Email dan Kata Sandi Anda</string>
     <string name="name">Nama</string>
     <string name="logout">Keluar</string>
+    <string name="google_sign_up">Daftar dengan Google</string>
+    <string name="google_sign_in">Masuk dengan Google</string>
 </resources>

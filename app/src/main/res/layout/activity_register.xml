@@ -172,13 +172,34 @@
           app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"
           tools:alpha="100" />
 
+        <com.google.android.material.button.MaterialButton
+          android:id="@+id/googleSignupButton"
+          style="@style/Widget.Material3.Button.OutlinedButton"
+          android:layout_width="0dp"
+          android:layout_height="64dp"
+          android:layout_marginStart="32dp"
+          android:layout_marginTop="16dp"
+          android:layout_marginEnd="32dp"
+          android:alpha="0"
+          android:text="@string/google_sign_up"
+          android:textColor="@color/md_theme_primary"
+          app:icon="@drawable/google_icon"
+          app:iconPadding="8dp"
+          app:iconTint="@null"
+          app:iconGravity="start"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/signupButton"
+          tools:alpha="100" />
+
         <androidx.constraintlayout.widget.Guideline
           android:id="@+id/guidelineHorizontal"
           android:layout_width="wrap_content"
           android:layout_height="64dp"
           android:orientation="horizontal"
           app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintGuide_percent="0.38"
+          app:layout_constraintGuide_percent="0.27"
           app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -186,7 +207,7 @@
           android:layout_width="wrap_content"
           android:layout_height="64dp"
           android:orientation="horizontal"
-          app:layout_constraintGuide_percent="0.1" />
+          app:layout_constraintGuide_percent="0.05" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

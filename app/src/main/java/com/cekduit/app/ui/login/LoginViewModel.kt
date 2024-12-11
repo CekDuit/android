@@ -9,7 +9,8 @@ import kotlinx.coroutines.launch
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
   fun saveSession(user: UserModel) {
     viewModelScope.launch {
-      repository.saveSession(user)
+      // Explicitly set isLogin to true when saving the session
+      repository.saveSession(user.copy(isLogin = true))
     }
   }
 }

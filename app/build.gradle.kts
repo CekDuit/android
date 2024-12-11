@@ -75,4 +75,6 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
 
     implementation(libs.mpandroidchart)
+
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
 }

@@ -50,6 +50,11 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
         }
 
+        val accountName = arguments?.getString("ACCOUNT_NAME")
+        if (accountName != null) {
+            binding.tvGreeting.text = "Hello, $accountName"
+        }
+
         val chart = binding.chart
         // Dummy data
         val dataObjects = listOf(

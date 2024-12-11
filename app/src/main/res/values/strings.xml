@@ -38,4 +38,6 @@
     <string name="title_signup_page">Start by Signing In First by Entering Your Email and Password</string>
     <string name="name">Name</string>
     <string name="logout">Logout</string>
+    <string name="google_sign_up">Sign up with Google</string>
+    <string name="google_sign_in">Sign in with Google</string>
 </resources>

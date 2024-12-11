@@ -20,9 +20,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cekduit.app.R
 import com.cekduit.app.databinding.ActivityMainBinding
 import com.cekduit.app.ui.createTransaction.AddTransactionBottomSheetDialogFragment
+import com.cekduit.app.ui.home.HomeFragment
 import com.cekduit.app.ui.settings.SettingsActivity
 import com.cekduit.app.ui.welcome.WelcomeActivity
 import com.cekduit.app.utils.ViewModelFactory
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,30 +35,42 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels {
         ViewModelFactory.getInstance(this)
     }
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupNavigation()
+        setupGoogleSignIn()
+        setupAddTransactionButton()
+        observeSession()
+        observeThemeChanges()
+        handleIncomingAccountName()
+    }
+
+    private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
-        listenOnThemeChanges()
 
         setSupportActionBar(binding.toolbar)
 
-        // Setup AppBarConfiguration
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_transactions, R.id.navigation_wallet
+                R.id.navigation_home,
+                R.id.navigation_transactions,
+                R.id.navigation_wallet
             )
         )
-        // Setup ActionBar with NavController
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        setupBottomNavigationTransitions(navView, navController)
+    }
+
+    private fun setupBottomNavigationTransitions(navView: BottomNavigationView, navController: androidx.navigation.NavController) {
         val menuItems = listOf(
             R.id.navigation_home,
             R.id.navigation_transactions,
@@ -83,64 +100,79 @@ class MainActivity : AppCompatActivity() {
                 false
             }
         }
-
-        val addTransactionFab = binding.floatingActionButton
-        addTransactionFab.setOnClickListener {
-            val bottomSheet = AddTransactionBottomSheetDialogFragment()
-            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
-        }
-
-        viewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                startActivity(Intent(this, WelcomeActivity::class.java))
-                finish()
-            }
-        }
-        setupView()
     }
 
-    private fun setupView() {
-        viewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                startActivity(Intent(this, WelcomeActivity::class.java))
-                finish()
-            }
+    private fun setupGoogleSignIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+    private fun setupAddTransactionButton() {
+        binding.floatingActionButton.setOnClickListener {
+            AddTransactionBottomSheetDialogFragment().show(supportFragmentManager, "AddTransaction")
         }
     }
 
-    private fun listenOnThemeChanges() {
+    private fun observeSession() {
+//        viewModel.getSession().observe(this) { user ->
+//            if (!user.isLogin) {
+//                startActivity(Intent(this, WelcomeActivity::class.java))
+//                finish()
+//            }
+//        }
+    }
+
+    private fun observeThemeChanges() {
         viewModel.getThemeSettings().observe(this) { isDarkModeActive ->
-            if (isDarkModeActive == null) {
-                return@observe
+            isDarkModeActive?.let { active ->
+                AppCompatDelegate.setDefaultNightMode(
+                    if (active) AppCompatDelegate.MODE_NIGHT_YES
+                    else AppCompatDelegate.MODE_NIGHT_NO
+                )
             }
-            if (isDarkModeActive) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+    }
+
+    private fun handleIncomingAccountName() {
+        val accountName = intent.getStringExtra("ACCOUNT_NAME")
+        accountName?.let { name ->
+            val bundle = Bundle().apply {
+                putString("ACCOUNT_NAME", name)
             }
+            val homeFragment = HomeFragment().apply {
+                arguments = bundle
+            }
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment_activity_main, homeFragment)
+                .commit()
+        }
+    }
+
+    private fun signOut() {
+        googleSignInClient.signOut().addOnCompleteListener {
+            startActivity(Intent(this, WelcomeActivity::class.java))
+            finish()
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.toolbar_menu, menu)
-
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> {
-                val intent = Intent(this, SettingsActivity::class.java)
-                startActivity(intent)
+                startActivity(Intent(this, SettingsActivity::class.java))
                 true
             }
             R.id.action_logout -> {
-                viewModel.logout()
+                signOut()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }
