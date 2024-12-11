@@ -11,7 +11,9 @@ import com.cekduit.app.testdir.Transaction
 import java.text.NumberFormat
 import java.util.Locale
 
-class TransactionItemAdapter : RecyclerView.Adapter<TransactionItemAdapter.NestedViewHolder>() {
+class TransactionItemAdapter(
+    private val onItemClicked: (Transaction) -> Unit
+) : RecyclerView.Adapter<TransactionItemAdapter.NestedViewHolder>() {
     private var items: List<Transaction> = listOf()
     private val currencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
@@ -28,6 +30,9 @@ class TransactionItemAdapter : RecyclerView.Adapter<TransactionItemAdapter.Neste
 
     override fun onBindViewHolder(holder: NestedViewHolder, position: Int) {
         holder.bind(items[position], isLast = position == items.size - 1)
+        holder.itemView.setOnClickListener {
+            onItemClicked(items[position])
+        }
     }
 
     override fun getItemCount() = items.size

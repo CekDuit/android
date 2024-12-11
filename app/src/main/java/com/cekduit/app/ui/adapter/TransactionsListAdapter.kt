@@ -1,6 +1,5 @@
 package com.cekduit.app.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +7,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cekduit.app.R
+import com.cekduit.app.testdir.Transaction
 import com.cekduit.app.testdir.TransactionList
 import java.text.NumberFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class TransactionsListAdapter : RecyclerView.Adapter<TransactionsListAdapter.ParentViewHolder>() {
+class TransactionsListAdapter(
+    private val onTransactionItemClicked: (Transaction) -> Unit
+) : RecyclerView.Adapter<TransactionsListAdapter.ParentViewHolder>() {
     private var items: List<TransactionList> = listOf()
     private val currencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
@@ -26,7 +28,7 @@ class TransactionsListAdapter : RecyclerView.Adapter<TransactionsListAdapter.Par
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.transactions_list, parent, false)
-        return ParentViewHolder(view, currencyFormat)
+        return ParentViewHolder(view, onTransactionItemClicked, currencyFormat)
     }
 
     override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {
@@ -35,10 +37,14 @@ class TransactionsListAdapter : RecyclerView.Adapter<TransactionsListAdapter.Par
 
     override fun getItemCount() = items.size
 
-    class ParentViewHolder(itemView: View, private val currencyFormat: NumberFormat) : RecyclerView.ViewHolder(itemView) {
+    class ParentViewHolder(
+        itemView: View,
+        onClicked: (Transaction) -> Unit,
+        private val currencyFormat: NumberFormat,
+    ) : RecyclerView.ViewHolder(itemView) {
         private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
         private val rvNested: RecyclerView = itemView.findViewById(R.id.rvTransactionItems)
-        private val nestedAdapter = TransactionItemAdapter()
+        private val nestedAdapter = TransactionItemAdapter(onClicked)
         private val totalIncome: TextView = itemView.findViewById(R.id.totalIncome)
         private val totalExpense: TextView = itemView.findViewById(R.id.totalExpense)
 

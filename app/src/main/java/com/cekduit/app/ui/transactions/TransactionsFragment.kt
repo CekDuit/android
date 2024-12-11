@@ -1,6 +1,7 @@
 package com.cekduit.app.ui.transactions
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -22,15 +23,14 @@ import com.cekduit.app.testdir.TransactionList
 import com.cekduit.app.testdir.TransactionType
 import com.cekduit.app.ui.adapter.TransactionItemAdapter
 import com.cekduit.app.ui.adapter.TransactionsListAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.text.NumberFormat
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class TransactionsFragment : Fragment() {
 
     private var _binding: FragmentTransactionsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -43,17 +43,14 @@ class TransactionsFragment : Fragment() {
         _binding = FragmentTransactionsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // setup menu for this fragment
         requireActivity().addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                // Inflate menu Resource
                 menuInflater.inflate(R.menu.transaction_fragment_menu, menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.action_search -> {
-                        // Handle search action
                         true
                     }
                     else -> false
@@ -64,7 +61,11 @@ class TransactionsFragment : Fragment() {
         binding.rvTransactionsList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             val dummyData = TransactionDummy().dummyData
-            val dataAdapter = TransactionsListAdapter()
+            val dataAdapter = TransactionsListAdapter() { transaction ->
+                // Handle item click
+                Log.d("Transaction", "Item clicked: $transaction")
+                showTransactionDetailDialog(transaction)
+            }
             adapter = dataAdapter
             dataAdapter.setData(listOf(
                 dummyData,
@@ -76,6 +77,26 @@ class TransactionsFragment : Fragment() {
         }
 
         return root
+    }
+
+    private fun showTransactionDetailDialog(transaction: Transaction) {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_transaction_detail, null)
+
+        val tvDescription: TextView = dialogView.findViewById(R.id.tvTransactionDescription)
+        val tvAmount: TextView = dialogView.findViewById(R.id.tvTransactionAmount)
+        val tvDate: TextView = dialogView.findViewById(R.id.tvTransactionDate)
+
+        tvDescription.text = transaction.description
+        tvAmount.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(transaction.amount)
+        tvDate.text = transaction.timestamp.toString()
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Transaction Detail")
+            .setView(dialogView)
+            .setPositiveButton("Close") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     override fun onDestroyView() {
