@@ -7,9 +7,25 @@
         <item>Item 4</item>
         <item>Item 5</item>
     </string-array>
-    <string-array name="setting_options">
-        <item>@string/language</item>
-        <item>@string/appearance</item>
-        <item>@string/reminder</item>
+    <string-array name="categories">
+        <item>Food</item>
+        <item>Health</item>
+        <item>Drinks</item>
+        <item>Household</item>
+        <item>Transportation</item>
+        <item>Groceries</item>
+        <item>Family</item>
+        <item>Subscription</item>
+        <item>Apparel</item>
+        <item>Education</item>
+        <item>Entertainment</item>
+        <item>Utilities</item>
+        <item>Beauty</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="payment_methods">
+        <item>Cash</item>
+        <item>Others</item>
     </string-array>
 </resources>
