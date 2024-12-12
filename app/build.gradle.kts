@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -17,6 +18,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         resourceConfigurations.addAll(listOf("en_US", "in"))
+
+        buildConfigField("String", "BASE_URL", "\"http://localhost:3000/\"")
     }
 
     signingConfigs {
@@ -51,6 +54,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -76,5 +80,16 @@ dependencies {
 
     implementation(libs.mpandroidchart)
 
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+
+    implementation("androidx.credentials:credentials:1.5.0-alpha05")
     implementation(libs.play.services.auth)
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.0.0")
+
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 }

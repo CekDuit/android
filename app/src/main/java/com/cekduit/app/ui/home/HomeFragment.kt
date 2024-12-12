@@ -3,6 +3,7 @@ package com.cekduit.app.ui.home
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.Menu
@@ -58,9 +59,23 @@ class HomeFragment : Fragment() {
         }
 
         val accountName = arguments?.getString("ACCOUNT_NAME")
+        val accountEmail = arguments?.getString("ACCOUNT_EMAIL")
+        val tokenId = arguments?.getString("TOKEN_ID")
+
         if (accountName != null) {
             binding.tvGreeting.text = "Hello, $accountName"
         }
+
+        if (tokenId != null) {
+            // Example: Log the token ID or use it as needed
+            Log.d("HomeFragment", "Token ID: $tokenId")
+        }
+
+        if (accountEmail != null) {
+            // Example: Log the token ID or use it as needed
+            Log.d("HomeFragment", "Email: $accountEmail")
+        }
+
 
         val chart = binding.chart
         // Dummy data
