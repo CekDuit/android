@@ -1,4 +1,20 @@
 <resources>
+    <color name="white">#FFFFFF</color>
+    <color name="color_food">#FF6B6B</color>
+    <color name="color_health">#4ECDC4</color>
+    <color name="color_drinks">#45B7D1</color>
+    <color name="color_household">#FDCB6E</color>
+    <color name="color_transportation">#6C5CE7</color>
+    <color name="color_groceries">#A8E6CF</color>
+    <color name="color_family">#FF8ED4</color>
+    <color name="color_subscription">#7ED6DF</color>
+    <color name="color_apparel">#FAD390</color>
+    <color name="color_education">#5F27CD</color>
+    <color name="color_entertainment">#FF9FF3</color>
+    <color name="color_utilities">#54A0FF</color>
+    <color name="color_beauty">#5FAAEE</color>
+    <color name="color_others">#B2BEC3</color>
+    <color name="color_background">#FFFFFF</color>
     <color name="rose">#F43f5E</color>
     <color name="blue_primary">#3B82F6</color>
     <color name="md_theme_primary">#4B5C92</color>

@@ -40,4 +40,15 @@
     <string name="logout">Logout</string>
     <string name="google_sign_up">Sign up with Google</string>
     <string name="google_sign_in">Sign in with Google</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="food">Food</string>
+    <string name="note">Note</string>
+    <string name="ID" translatable="false">ID</string>
+    <string name="summary_of_the_month" translatable="false">Summary of the month</string>
+    <string name="expenses">Expenses</string>
+    <string name="rp_20_000" translatable="false">Rp. 20.000</string>
+    <string name="are_you_sure_you_want_to_delete_this_transaction">Are you sure you want to delete this transaction?</string>
+    <string name="delete_transaction">Delete Transaction</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 </resources>

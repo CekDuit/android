@@ -5,6 +5,7 @@
         android:id="@+id/action_search"
         android:icon="@drawable/rounded_search_24"
         android:title="@string/search"
+        app:iconTint="@color/md_theme_onSurface"
         app:showAsAction="always"
         android:contentDescription="@string/search_transaction"/>
 </menu>

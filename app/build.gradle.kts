@@ -76,5 +76,5 @@ dependencies {
 
     implementation(libs.mpandroidchart)
 
-    implementation("com.google.android.gms:play-services-auth:21.3.0")
+    implementation(libs.play.services.auth)
 }
