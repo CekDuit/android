@@ -63,6 +63,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:visibility="gone"
         android:id="@+id/lineChart"
         style="?attr/materialCardViewElevatedStyle"
         android:layout_width="match_parent"
@@ -95,11 +96,38 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/recentTransactionCard"
+        style="?attr/materialCardViewElevatedStyle"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/lineChart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/recent_transaction"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                tools:itemCount="5"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/transaction_item" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
         style="?attr/materialCardViewElevatedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/lineChart">
+        app:layout_constraintTop_toBottomOf="@id/recentTransactionCard">
 
         <LinearLayout
             android:layout_width="match_parent"

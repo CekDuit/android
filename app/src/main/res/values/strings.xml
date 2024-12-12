@@ -52,4 +52,5 @@
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="web_client_id">82975713657-q5s5oh64a7fnghalcnqprij61nol9urg.apps.googleusercontent.com</string>
+    <string name="recent_transaction">Recent Transaction</string>
 </resources>
