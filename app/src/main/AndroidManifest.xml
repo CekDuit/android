@@ -23,12 +23,8 @@
           android:exported="false" />
 
         <activity
-          android:name=".ui.welcome.WelcomeActivity"
-          android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+          android:name=".ui.welcome.WelcomeActivity">
+
         </activity>
 
         <activity
@@ -38,7 +34,12 @@
 
         <activity
           android:name=".ui.main.MainActivity"
-          android:exported="false" />
+          android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service
           android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"

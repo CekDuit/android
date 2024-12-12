@@ -15,7 +15,8 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class TransactionsListAdapter(
-    private val onTransactionItemClicked: (Transaction) -> Unit
+    private val onTransactionItemClicked: (Transaction) -> Unit,
+    private val onTranasctionItemHold: (Transaction) -> Unit
 ) : RecyclerView.Adapter<TransactionsListAdapter.ParentViewHolder>() {
     private var items: List<TransactionList> = listOf()
     private val currencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
@@ -28,7 +29,7 @@ class TransactionsListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.transactions_list, parent, false)
-        return ParentViewHolder(view, onTransactionItemClicked, currencyFormat)
+        return ParentViewHolder(view, onTransactionItemClicked, onTranasctionItemHold, currencyFormat)
     }
 
     override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {
@@ -40,11 +41,12 @@ class TransactionsListAdapter(
     class ParentViewHolder(
         itemView: View,
         onClicked: (Transaction) -> Unit,
+        onLongPress: (Transaction) -> Unit,
         private val currencyFormat: NumberFormat,
     ) : RecyclerView.ViewHolder(itemView) {
         private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
         private val rvNested: RecyclerView = itemView.findViewById(R.id.rvTransactionItems)
-        private val nestedAdapter = TransactionItemAdapter(onClicked)
+        private val nestedAdapter = TransactionItemAdapter(onClicked, onLongPress)
         private val totalIncome: TextView = itemView.findViewById(R.id.totalIncome)
         private val totalExpense: TextView = itemView.findViewById(R.id.totalExpense)
 

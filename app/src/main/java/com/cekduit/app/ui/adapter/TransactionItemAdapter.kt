@@ -12,7 +12,8 @@ import java.text.NumberFormat
 import java.util.Locale
 
 class TransactionItemAdapter(
-    private val onItemClicked: (Transaction) -> Unit
+    private val onItemClicked: (Transaction) -> Unit,
+    private val onItemHold: (Transaction) -> Unit
 ) : RecyclerView.Adapter<TransactionItemAdapter.NestedViewHolder>() {
     private var items: List<Transaction> = listOf()
     private val currencyFormat = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
@@ -32,6 +33,10 @@ class TransactionItemAdapter(
         holder.bind(items[position], isLast = position == items.size - 1)
         holder.itemView.setOnClickListener {
             onItemClicked(items[position])
+        }
+        holder.itemView.setOnLongClickListener {
+            onItemHold(items[position])
+            true
         }
     }
 

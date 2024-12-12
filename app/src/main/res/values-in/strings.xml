@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Cek Duit</string>
     <string name="settings">Pengaturan</string>
     <string name="transactions">Transaksi</string>
     <string name="home">Beranda</string>
@@ -21,6 +20,7 @@
     <string name="language">Bahasa</string>
     <string name="appearance">Penampilan</string>
     <string name="reminder">Pengingat</string>
+    <string name="register">Daftar</string>
     <string name="title_login_page">Selamat Datang to Cek Duit</string>
     <string name="title_welcome_page">Selamat Datang to Cek Duit</string>
     <string name="message_welcome_page">Jelajahi perjalanan keuangan Anda dengan mudah. Pantau pengeluaran, atur anggaran, dan raih kontrol penuh atas keuangan Anda untuk masa depan yang lebih baik!</string>
@@ -37,4 +37,8 @@
     <string name="logout">Keluar</string>
     <string name="google_sign_up">Daftar dengan Google</string>
     <string name="google_sign_in">Masuk dengan Google</string>
+    <string name="payment_method">Metode Pembayaran</string>
+    <string name="food">Makanan</string>
+    <string name="note">Catatan</string>
+    <string name="expenses">Pengeluaran</string>
 </resources>
