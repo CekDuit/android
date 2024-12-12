@@ -138,11 +138,13 @@ class MainActivity : AppCompatActivity() {
     private fun handleIncomingAccountDetails() {
         val accountName = intent.getStringExtra("ACCOUNT_NAME")
         val tokenId = intent.getStringExtra("TOKEN_ID")
+        val accountEmail = intent.getStringExtra("ACCOUNT_EMAIL")
 
         accountName?.let { name ->
             val bundle = Bundle().apply {
                 putString("ACCOUNT_NAME", name)
-                putString("TOKEN_ID", tokenId) // Pass TOKEN_ID if needed in the fragment
+                putString("ACCOUNT_EMAIL", accountEmail)
+                putString("TOKEN_ID", tokenId)
             }
             val homeFragment = HomeFragment().apply {
                 arguments = bundle

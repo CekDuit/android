@@ -59,6 +59,7 @@ class HomeFragment : Fragment() {
         }
 
         val accountName = arguments?.getString("ACCOUNT_NAME")
+        val accountEmail = arguments?.getString("ACCOUNT_EMAIL")
         val tokenId = arguments?.getString("TOKEN_ID")
 
         if (accountName != null) {
@@ -68,6 +69,11 @@ class HomeFragment : Fragment() {
         if (tokenId != null) {
             // Example: Log the token ID or use it as needed
             Log.d("HomeFragment", "Token ID: $tokenId")
+        }
+
+        if (accountEmail != null) {
+            // Example: Log the token ID or use it as needed
+            Log.d("HomeFragment", "Email: $accountEmail")
         }
 
 
