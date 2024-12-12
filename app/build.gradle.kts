@@ -81,9 +81,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
 
-    implementation("androidx.credentials:credentials:<latest version>")
+    implementation("androidx.credentials:credentials:1.5.0-alpha05")
     implementation(libs.play.services.auth)
-    implementation("com.google.android.libraries.identity.googleid:googleid:<latest version>")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.0.0")
 
     implementation("com.github.stevdza-san:OneTapCompose:1.0.14")
 }
