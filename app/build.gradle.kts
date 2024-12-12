@@ -84,6 +84,4 @@ dependencies {
     implementation("androidx.credentials:credentials:1.5.0-alpha05")
     implementation(libs.play.services.auth)
     implementation("com.google.android.libraries.identity.googleid:googleid:1.0.0")
-
-    implementation("com.github.stevdza-san:OneTapCompose:1.0.14")
 }
