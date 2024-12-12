@@ -9,18 +9,26 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.cekduit.app.databinding.ActivityRegisterBinding
 import com.cekduit.app.ui.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.Scope
+import com.cekduit.app.R
+import com.cekduit.app.ui.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,77 +36,83 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupView()
-        setupAction()
         playAnimation()
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        mAuth = FirebaseAuth.getInstance()
 
-        // Check if user is already signed in
-        GoogleSignIn.getLastSignedInAccount(this)?.let {
-            navigateToMainActivity(it.displayName)
-        }
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.web_client_id))
+            .requestEmail()
+            .requestScopes(Scope("https://www.googleapis.com/auth/gmail.readonly"))
+            .build()
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         binding.googleSignupButton.setOnClickListener {
-            startGoogleSignIn()
+            signIn()
         }
     }
 
-    private fun startGoogleSignIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
+    private val signInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             try {
-                val account = GoogleSignIn.getSignedInAccountFromIntent(data).result
-                navigateToMainActivity(account.displayName)
+                val account = task.getResult(ApiException::class.java)
+                account?.idToken?.let { idToken ->
+                    firebaseAuthWithGoogle(account, idToken)
+                }
             } catch (e: ApiException) {
-                Toast.makeText(this, "Google Sign-In failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Google Sign-In failed: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun navigateToMainActivity(accountName: String?) {
-        val intent = Intent(this, MainActivity::class.java).apply {
-            accountName?.let { putExtra("ACCOUNT_NAME", it) }
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+    private fun signIn() {
+        val signInIntent = mGoogleSignInClient.signInIntent
+        signInLauncher.launch(signInIntent)
+    }
+
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount, idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    showSuccessDialog(account, idToken)
+                } else {
+                    Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun showSuccessDialog(account: GoogleSignInAccount, idToken: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle("Success!")
+            setMessage("Login berhasil! Ayo mulai cek keuangan Anda sekarang!")
+            setPositiveButton("Lanjut") { _, _ ->
+                val intent = Intent(this@RegisterActivity, MainActivity::class.java).apply {
+                    putExtra("ACCOUNT_NAME", account.displayName)
+                    putExtra("TOKEN_ID", idToken)
+                }
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish()
+            }
+            create()
+            show()
         }
-        startActivity(intent)
-        finish()
     }
 
     private fun setupView() {
-        @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
+            @Suppress("DEPRECATION")
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
         supportActionBar?.hide()
-    }
-
-    private fun setupAction() {
-        binding.signupButton.setOnClickListener {
-            val email = binding.edRegisterEmail.text.toString()
-
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Akun dengan $email sudah terdaftar. Yuk, login dan mulai menggunakan CekDuit.")
-                setPositiveButton("Lanjut") { _, _ ->
-                    finish()
-                }
-                create()
-                show()
-            }
-        }
     }
 
     private fun playAnimation() {
@@ -109,38 +123,14 @@ class RegisterActivity : AppCompatActivity() {
         }.start()
 
         val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
-        val nameTextView =
-            ObjectAnimator.ofFloat(binding.nameTextView, View.ALPHA, 1f).setDuration(100)
-        val nameEditTextLayout =
-            ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val emailTextView =
-            ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(100)
-        val emailEditTextLayout =
-            ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val passwordTextView =
-            ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
-        val passwordEditTextLayout =
-            ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val signup = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(100)
         val googleSignup = ObjectAnimator.ofFloat(binding.googleSignupButton, View.ALPHA, 1f).setDuration(100)
 
         AnimatorSet().apply {
             playSequentially(
                 title,
-                nameTextView,
-                nameEditTextLayout,
-                emailTextView,
-                emailEditTextLayout,
-                passwordTextView,
-                passwordEditTextLayout,
-                signup,
                 googleSignup
             )
             startDelay = 100
         }.start()
-    }
-
-    companion object {
-        private const val RC_SIGN_IN = 1000
     }
 }

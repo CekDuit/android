@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         setupAddTransactionButton()
         observeSession()
         observeThemeChanges()
-        handleIncomingAccountName()
+        handleIncomingAccountDetails()
     }
 
     private fun setupNavigation() {
@@ -135,11 +135,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleIncomingAccountName() {
+    private fun handleIncomingAccountDetails() {
         val accountName = intent.getStringExtra("ACCOUNT_NAME")
+        val tokenId = intent.getStringExtra("TOKEN_ID")
+
         accountName?.let { name ->
             val bundle = Bundle().apply {
                 putString("ACCOUNT_NAME", name)
+                putString("TOKEN_ID", tokenId) // Pass TOKEN_ID if needed in the fragment
             }
             val homeFragment = HomeFragment().apply {
                 arguments = bundle
@@ -149,6 +152,7 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
 
     private fun signOut() {
         googleSignInClient.signOut().addOnCompleteListener {
