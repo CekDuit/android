@@ -18,6 +18,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         resourceConfigurations.addAll(listOf("en_US", "in"))
+
+        buildConfigField("String", "BASE_URL", "\"http://localhost:3000/\"")
     }
 
     signingConfigs {
@@ -52,6 +54,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -84,4 +87,9 @@ dependencies {
     implementation("androidx.credentials:credentials:1.5.0-alpha05")
     implementation(libs.play.services.auth)
     implementation("com.google.android.libraries.identity.googleid:googleid:1.0.0")
+
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 }

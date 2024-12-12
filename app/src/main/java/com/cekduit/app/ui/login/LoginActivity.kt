@@ -13,6 +13,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.cekduit.app.R
+import com.cekduit.app.data.remote.response.AuthResponse
+import com.cekduit.app.data.remote.retrofit.ApiConfig
+import com.cekduit.app.data.remote.retrofit.AuthRequest
 import com.cekduit.app.databinding.ActivityLoginBinding
 import com.cekduit.app.ui.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -23,6 +26,9 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Scope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -77,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     showSuccessDialog(account, idToken)
+                    sendTokenToServer(idToken, account.email ?: "")
                 } else {
                     Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
                 }
@@ -94,6 +101,28 @@ class LoginActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+    }
+
+    private fun sendTokenToServer(idToken: String, email: String) {
+        ApiConfig.getApiService().login(AuthRequest(email, idToken)).enqueue(object :
+            Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                if (response.isSuccessful) {
+                    val authResponse = response.body()
+                    if (authResponse?.status == "success") {
+                        Toast.makeText(this@LoginActivity, "Login success!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Login failed: ${authResponse?.status}", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this@LoginActivity, "Login failed: ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                Toast.makeText(this@LoginActivity, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun showSuccessDialog(account: GoogleSignInAccount, idToken: String) {
