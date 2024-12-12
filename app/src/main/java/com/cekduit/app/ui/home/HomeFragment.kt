@@ -11,10 +11,12 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.load.engine.Resource
 import com.cekduit.app.R
 import com.cekduit.app.databinding.FragmentHomeBinding
 import com.cekduit.app.testdir.DummyData
@@ -155,7 +157,7 @@ class HomeFragment : Fragment() {
                 horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
                 verticalAlignment = Legend.LegendVerticalAlignment.CENTER
                 orientation = Legend.LegendOrientation.VERTICAL
-                xOffset = 10f
+                textColor = ResourcesCompat.getColor(resources, R.color.md_theme_onSurface, null)
             }
             invalidate()
         }
