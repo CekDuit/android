@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Cek Duit</string>
     <string name="settings">Pengaturan</string>
     <string name="transactions">Transaksi</string>
     <string name="home">Beranda</string>
@@ -21,4 +20,32 @@
     <string name="language">Bahasa</string>
     <string name="appearance">Penampilan</string>
     <string name="reminder">Pengingat</string>
+    <string name="register">Daftar</string>
+    <string name="title_login_page">Selamat Datang to Cek Duit</string>
+    <string name="title_welcome_page">Selamat Datang to Cek Duit</string>
+    <string name="message_welcome_page">Jelajahi perjalanan keuangan Anda dengan mudah. Pantau pengeluaran, atur anggaran, dan raih kontrol penuh atas keuangan Anda untuk masa depan yang lebih baik!</string>
+    <string name="message_login_page">Mulailah perjalanan Anda dengan masuk menggunakan email dan kata sandi. Pantau keuangan Anda dengan mudah dan raih kontrol penuh atas pengelolaan keuangan Anda!</string>
+    <string name="login">Masuk</string>
+    <string name="signup">Daftar</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="email_invalid">Alamat Email Tidak Valid</string>
+    <string name="pass_invalid">Minimal 8 karakter kata sandi</string>
+    <string name="title_signup_page">Mulai dengan Masuk Terlebih Dahulu dengan Mengisi Email dan Kata Sandi Anda</string>
+    <string name="name">Nama</string>
+    <string name="logout">Keluar</string>
+    <string name="google_sign_up">Daftar dengan Google</string>
+    <string name="google_sign_in">Masuk dengan Google</string>
+    <string name="payment_method">Metode Pembayaran</string>
+    <string name="food">Makanan</string>
+    <string name="note">Catatan</string>
+    <string name="expenses">Pengeluaran</string>
+    <string name="are_you_sure_you_want_to_delete_this_transaction">Apakah kamu yakin ingin menghapus transaksi ini?</string>
+    <string name="delete_transaction">Hapus Transaksi</string>
+    <string name="delete">Hapus</string>
+    <string name="cancel">Batal</string>
+    <string name="recent_transaction">Transaksi Terbaru</string>
+    <string name="press_back_again_to_exit">Tekan kembali untuk keluar</string>
+    <string name="signin_now">Masuk Sekarang</string>
 </resources>

@@ -77,11 +77,12 @@
         app:layout_constraintTop_toBottomOf="@id/date_field_layout">
 
         <AutoCompleteTextView
+            android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/category"
             android:inputType="none"
-            app:simpleItems="@array/simple_items" />
+            app:simpleItems="@array/categories" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,11 +97,12 @@
         app:layout_constraintTop_toBottomOf="@id/select_category">
 
         <AutoCompleteTextView
+            android:id="@+id/payment_method"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/wallet"
             android:inputType="none"
-            app:simpleItems="@array/simple_items" />
+            app:simpleItems="@array/payment_methods" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

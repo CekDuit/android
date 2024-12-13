@@ -31,7 +31,7 @@ class SettingsPreference private constructor(private val dataStore: DataStore<Pr
 
     fun getReminderStatus(): Flow<Boolean> {
         return dataStore.data.map { preferences ->
-            preferences[reminderKey] ?: false
+          preferences[reminderKey] == true
         }
     }
 

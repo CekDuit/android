@@ -23,4 +23,36 @@
     <string name="language">Language</string>
     <string name="appearance">Appearance</string>
     <string name="reminder">Reminder</string>
+    <string name="title_welcome_page">Welcome to Cek Duit</string>
+    <string name="message_welcome_page">Explore your financial journey with ease. Track expenses, set budgets, and take full control of your finances for a better future!</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="title_login_page">Welcome to Cek Duit</string>
+    <string name="email_invalid">" Invalid Email Address"</string>
+    <string name="pass_invalid">Password must be at least 8 characters</string>
+    <string name="message_login_page">Start your journey by logging in with your email and password. Easily monitor your finances and gain full control over your money management!</string>
+    <string name="title_signup_page">Start by Signing In First by Entering Your Email and Password</string>
+    <string name="name">Name</string>
+    <string name="logout">Logout</string>
+    <string name="google_sign_up">Sign up with Google</string>
+    <string name="google_sign_in">Sign in with Google</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="food">Food</string>
+    <string name="note">Note</string>
+    <string name="ID" translatable="false">ID</string>
+    <string name="summary_of_the_month" translatable="false">Summary of the month</string>
+    <string name="expenses">Expenses</string>
+    <string name="rp_20_000" translatable="false">Rp. 20.000</string>
+    <string name="are_you_sure_you_want_to_delete_this_transaction">Are you sure you want to delete this transaction?</string>
+    <string name="delete_transaction">Delete Transaction</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="web_client_id" translatable="false">82975713657-q5s5oh64a7fnghalcnqprij61nol9urg.apps.googleusercontent.com</string>
+    <string name="recent_transaction">Recent Transaction</string>
+    <string name="press_back_again_to_exit">Press back again to exit</string>
+    <string name="signin_now">Sign In Now</string>
 </resources>
