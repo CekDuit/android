@@ -10,6 +10,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.cekduit.app.R
@@ -18,6 +19,7 @@ import com.cekduit.app.data.remote.retrofit.ApiConfig
 import com.cekduit.app.data.remote.retrofit.AuthRequest
 import com.cekduit.app.databinding.ActivityLoginBinding
 import com.cekduit.app.ui.main.MainActivity
+import com.cekduit.app.utils.ViewModelFactory
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -34,6 +36,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mAuth: FirebaseAuth
+    private val viewModel: LoginViewModel by viewModels {
+        ViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     showSuccessDialog(account, idToken)
-                    sendTokenToServer(idToken, account.email ?: "")
+//                    sendTokenToServer(idToken, account.email ?: "")
                 } else {
                     Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
                 }
@@ -130,14 +135,9 @@ class LoginActivity : AppCompatActivity() {
             setTitle("Success!")
             setMessage("Login berhasil! Ayo mulai cek keuangan Anda sekarang!")
             setPositiveButton("Lanjut") { _, _ ->
-                val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
-                    putExtra("ACCOUNT_NAME", account.displayName)
-                    putExtra("ACCOUNT_EMAIL", account.email)
-                    putExtra("TOKEN_ID", idToken)
-                }
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                viewModel.saveCredentials(idToken, account.email ?: "", account.displayName ?: "")
                 startActivity(intent)
-                finish()
             }
             create()
             show()

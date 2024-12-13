@@ -8,18 +8,31 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.cekduit.app.databinding.ActivityWelcomeBinding
 import com.cekduit.app.ui.login.LoginActivity
+import com.cekduit.app.ui.main.MainActivity
 import com.cekduit.app.ui.register.RegisterActivity
+import com.cekduit.app.utils.ViewModelFactory
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
+    private val viewModel: WelcomeViewModel by viewModels {
+        ViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel.getDisplayName().observe(this, { displayName ->
+            if (displayName != null) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+        })
 
         setupView()
         setupAction()

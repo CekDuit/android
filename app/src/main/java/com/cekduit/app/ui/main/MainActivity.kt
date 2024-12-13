@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         setupAddTransactionButton()
         observeSession()
         observeThemeChanges()
-        handleIncomingAccountDetails()
+//        handleIncomingAccountDetails()
 
     }
 

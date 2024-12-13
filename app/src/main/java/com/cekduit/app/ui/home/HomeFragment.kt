@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +26,7 @@ import com.cekduit.app.testdir.DummyData
 import com.cekduit.app.testdir.TransactionDummy
 import com.cekduit.app.ui.adapter.TransactionItemAdapter
 import com.cekduit.app.ui.components.CustomMarkerView
+import com.cekduit.app.utils.ViewModelFactory
 import com.cekduit.app.utils.getColorResourceByName
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.Entry
@@ -41,10 +43,11 @@ import com.github.mikephil.charting.utils.Utils
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    private val viewModel: HomeViewModel by viewModels {
+        ViewModelFactory.getInstance(requireActivity())
+    }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
@@ -52,32 +55,30 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        homeViewModel.text.observe(viewLifecycleOwner) {
-        }
+        viewModel.getDisplayName().observe(viewLifecycleOwner, { displayName ->
+            binding.tvGreeting.text = "Hello, $displayName"
+        })
 
-        val accountName = arguments?.getString("ACCOUNT_NAME")
-        val accountEmail = arguments?.getString("ACCOUNT_EMAIL")
-        val tokenId = arguments?.getString("TOKEN_ID")
-
-        if (accountName != null) {
-            binding.tvGreeting.text = "Hello, $accountName"
-        }
-
-        if (tokenId != null) {
-            // Example: Log the token ID or use it as needed
-            Log.d("HomeFragment", "Token ID: $tokenId")
-        }
-
-        if (accountEmail != null) {
-            // Example: Log the token ID or use it as needed
-            Log.d("HomeFragment", "Email: $accountEmail")
-        }
+//        val accountName = arguments?.getString("ACCOUNT_NAME")
+//        val accountEmail = arguments?.getString("ACCOUNT_EMAIL")
+//        val tokenId = arguments?.getString("TOKEN_ID")
+//
+//        if (accountName != null) {
+//            binding.tvGreeting.text = "Hello, $accountName"
+//        }
+//
+//        if (tokenId != null) {
+//            // Example: Log the token ID or use it as needed
+//            Log.d("HomeFragment", "Token ID: $tokenId")
+//        }
+//
+//        if (accountEmail != null) {
+//            // Example: Log the token ID or use it as needed
+//            Log.d("HomeFragment", "Email: $accountEmail")
+//        }
 
 
         val chart = binding.chart
