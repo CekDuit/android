@@ -22,6 +22,10 @@ CekDuit is a mobile application that helps users to manage their finances. This 
 - MPAndroidChart
 
 ## Screenshot
-![welcome_dark](https://github.com/user-attachments/assets/1b23d79d-2a4f-4619-86df-8c98559d09e5) ![login_dark](https://github.com/user-attachments/assets/760cf21e-6e4d-45fb-8976-6ba76c35a8a9)
-![home_page](https://github.com/user-attachments/assets/17baa0a5-a047-4ad8-8b6f-61d0e20d0694) ![transaction_dark](https://github.com/user-attachments/assets/cd6beb8d-5b19-4f8e-a45e-b0f27f3f1a62)
-![setting_dark](https://github.com/user-attachments/assets/f4204259-6714-4024-9f43-c6dde588e036) ![CekDuit_Demo](https://github.com/user-attachments/assets/e058a41b-0402-49a4-8527-1afa01ad2cde)
+<img src="https://github.com/user-attachments/assets/1b23d79d-2a4f-4619-86df-8c98559d09e5" width="500" /> 
+<img src="https://github.com/user-attachments/assets/760cf21e-6e4d-45fb-8976-6ba76c35a8a9" width="500" />
+<img src="https://github.com/user-attachments/assets/17baa0a5-a047-4ad8-8b6f-61d0e20d0694" width="500" />
+<img src="https://github.com/user-attachments/assets/cd6beb8d-5b19-4f8e-a45e-b0f27f3f1a62" width="500" />
+<img src="https://github.com/user-attachments/assets/f4204259-6714-4024-9f43-c6dde588e036" width="500" />
+<img src="https://github.com/user-attachments/assets/e058a41b-0402-49a4-8527-1afa01ad2cde" width="500" />
+
