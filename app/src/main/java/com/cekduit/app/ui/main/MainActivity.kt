@@ -180,6 +180,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun signOut() {
         googleSignInClient.signOut().addOnCompleteListener {
+            viewModel.logout()
             startActivity(Intent(this, WelcomeActivity::class.java))
             finish()
         }

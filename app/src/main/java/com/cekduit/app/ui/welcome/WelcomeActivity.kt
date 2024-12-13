@@ -28,7 +28,7 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.getDisplayName().observe(this, { displayName ->
-            if (displayName != null) {
+            if (displayName.length > 1) {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }

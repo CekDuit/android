@@ -25,6 +25,14 @@ class SettingsPreference private constructor(private val dataStore: DataStore<Pr
         }
     }
 
+    suspend fun logout () {
+        dataStore.edit { preferences ->
+            preferences[token] = ""
+            preferences[email] = ""
+            preferences[name] = ""
+        }
+    }
+
     suspend fun saveThemeSetting(isDarkModeActive: Boolean) {
         dataStore.edit { preferences ->
             preferences[themeKey] = isDarkModeActive

@@ -11,4 +11,10 @@ class MainViewModel(private val pref: SettingsPreference) : ViewModel() {
     fun getThemeSettings(): LiveData<Boolean?> {
         return pref.getThemeSetting().asLiveData()
     }
+
+    fun logout() {
+        viewModelScope.launch {
+            pref.logout()
+        }
+    }
 }
