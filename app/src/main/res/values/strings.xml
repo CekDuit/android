@@ -51,6 +51,8 @@
     <string name="delete_transaction">Delete Transaction</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
-    <string name="web_client_id">82975713657-q5s5oh64a7fnghalcnqprij61nol9urg.apps.googleusercontent.com</string>
+    <string name="web_client_id" translatable="false">82975713657-q5s5oh64a7fnghalcnqprij61nol9urg.apps.googleusercontent.com</string>
     <string name="recent_transaction">Recent Transaction</string>
+    <string name="press_back_again_to_exit">Press back again to exit</string>
+    <string name="signin_now">Sign In Now</string>
 </resources>

@@ -17,10 +17,13 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.load.engine.Resource
 import com.cekduit.app.R
 import com.cekduit.app.databinding.FragmentHomeBinding
 import com.cekduit.app.testdir.DummyData
+import com.cekduit.app.testdir.TransactionDummy
+import com.cekduit.app.ui.adapter.TransactionItemAdapter
 import com.cekduit.app.ui.components.CustomMarkerView
 import com.cekduit.app.utils.getColorResourceByName
 import com.github.mikephil.charting.components.Legend
@@ -188,13 +191,25 @@ class HomeFragment : Fragment() {
             }
         })
 
-        // Refresh chart
+        setupRecentTransaction()
 
 
         return root
 
     }
 
+    private fun setupRecentTransaction() {
+        binding.rvRecentTransaction.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            val dummyData = TransactionDummy().dummyData.transactions
+            val dataAdapter = TransactionItemAdapter(
+                onItemClicked = {},
+                onItemHold = {}
+            )
+            dataAdapter.setData(dummyData)
+            adapter = dataAdapter
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

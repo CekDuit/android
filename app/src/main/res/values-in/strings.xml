@@ -41,4 +41,11 @@
     <string name="food">Makanan</string>
     <string name="note">Catatan</string>
     <string name="expenses">Pengeluaran</string>
+    <string name="are_you_sure_you_want_to_delete_this_transaction">Apakah kamu yakin ingin menghapus transaksi ini?</string>
+    <string name="delete_transaction">Hapus Transaksi</string>
+    <string name="delete">Hapus</string>
+    <string name="cancel">Batal</string>
+    <string name="recent_transaction">Transaksi Terbaru</string>
+    <string name="press_back_again_to_exit">Tekan kembali untuk keluar</string>
+    <string name="signin_now">Masuk Sekarang</string>
 </resources>
